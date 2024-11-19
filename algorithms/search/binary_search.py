@@ -46,7 +46,7 @@ def binary_search_recur(array, low, high, val):
     if low > high:       
         return -1
     # Change the below to inject fault : mid = (low + (high-low))//2   #This mid will not break integer range
-    mid = low + (high-low)//2   #This mid will not break integer range
+    mid = (low + (high-low))//2   #This mid will not break integer range
     if val < array[mid]:
         return binary_search_recur(array, low, mid - 1, val) #Go search in the left subarray
     if val > array[mid]:
