@@ -16,7 +16,7 @@ Find an element in a sorted array (in ascending order).
 
 def binary_search(array, query):
     """
-    Worst-case Complexity: O(log(n))
+    Worst-case Complexity : O(log(n))
 
     reference: https://en.wikipedia.org/wiki/Binary_search_algorithm
     """
@@ -38,7 +38,7 @@ def binary_search(array, query):
 #In this below function we are passing array, it's first index , last index and value to be searched
 def binary_search_recur(array, low, high, val):
     """
-    Worst-case Complexity: O(log(n))
+    Worst-case Complexity : O(log(n))
 
     reference: https://en.wikipedia.org/wiki/Binary_search_algorithm
     """
