@@ -51,6 +51,7 @@ def maze_search(maze):
     # Define height and width of maze and targets
     height, width = len(maze), len(maze[0])
     target_x, target_y = height - 1, width - 1
+    print(f"Target x and y : {target_x}, {target_y}")
 
     # Define a dequeue
     queue = deque([(initial_x, initial_y, 0)])
@@ -70,6 +71,7 @@ def maze_search(maze):
 
         # Define new directions
         for dx, dy in directions:
+            print("Add differential values to x and y")
             new_x = x + dx # differential x
             new_y = y + dy
 
@@ -81,6 +83,7 @@ def maze_search(maze):
             if maze[new_x][new_y] == ALLOWED and is_visited[new_x][new_y] == UNVISITED:
                 # append to the list
                 queue.append((new_x, new_y, steps + 1))
+                # Mark the node as visited
                 is_visited[new_x][new_y] = VISITED
 
     return -1 
