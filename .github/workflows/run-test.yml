@@ -8,6 +8,14 @@ on:
     branches:
       - main
 
+  # [CLOUDAEYE] ADD WORKFLOW DISPATCH: To allow manual trigger of this workflow
+  workflow_dispatch:
+    inputs:
+      commit_suggestions:
+        description: 'Encoded list of commit suggestions'
+        required: true
+        type: string
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -23,7 +31,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install -r test_requirements.txt
+          python -m pip install -r test_requirements.txt          
+
+      # [CLOUDAEYE] ADD STEP: To locally apply the commit suggestions as git patches and then run tests
+      - name: Apply and validate commit suggestion
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.commit_suggestions != null
+        run: |
+          echo "Triggering patch file generation for received commit suggestions"
+          # Execute generate patch python script
+          python generate-patch.py --comments ${{ github.event.inputs.commit_suggestions }}
+          # Apply all patch files
+          for patch in patches/*.patch; do git apply "$patch" && echo "Patch applied successfully - $patch"; done          
 
       - name: Run tests
         run: |
