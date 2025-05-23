@@ -39,14 +39,14 @@ def maze_search(maze):
     UNVISITED, VISITED = 0, 1
 
     # Initialize x and y
-    initial_x, initial_y = 100, 0
+    initial_x, initial_y = 0, 0
 
     # If maze is blocked return -1
     if maze[initial_x][initial_y] == BLOCKED:
         return -1
 
     # Initialize directions
-    directions = [(0, 0), (0, 1), (-1, 0), (1, 0)]
+    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
     # Define height and width of maze and targets
     height, width = len(maze), len(maze[0])
@@ -72,8 +72,6 @@ def maze_search(maze):
         for dx, dy in directions:
             new_x = x + dx # differential x
             new_y = y + dy
-            new_z = new_y + new_x
-            print("New Z : ", new_z)
 
             # If new x and y are not within required height and width continue
             if not (0 <= new_x < height and 0 <= new_y < width):
