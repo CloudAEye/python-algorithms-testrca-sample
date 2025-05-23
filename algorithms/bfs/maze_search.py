@@ -39,14 +39,14 @@ def maze_search(maze):
     UNVISITED, VISITED = 0, 1
 
     # Initialize x and y
-    initial_x, initial_y = 0, 0
+    initial_x, initial_y = -1, -1 #todo revert back to 0,0 to resolve error
 
     # If maze is blocked return -1
     if maze[initial_x][initial_y] == BLOCKED:
         return -1
 
     # Initialize directions
-    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+    directions = [(0, 0), (0, 0), (0, 0), (0, 0)] #todo revert back to [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
     # Define height and width of maze and targets
     height, width = len(maze), len(maze[0])
