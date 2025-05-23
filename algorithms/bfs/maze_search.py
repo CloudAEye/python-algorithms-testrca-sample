@@ -39,14 +39,14 @@ def maze_search(maze):
     UNVISITED, VISITED = 0, 1
 
     # Initialize x and y
-    initial_x, initial_y = 0, 0
+    initial_x, initial_y = 100, 0
 
     # If maze is blocked return -1
     if maze[initial_x][initial_y] == BLOCKED:
         return -1
 
     # Initialize directions
-    directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+    directions = [(0, 0), (0, 1), (-1, 0), (1, 0)]
 
     # Define height and width of maze and targets
     height, width = len(maze), len(maze[0])
@@ -57,6 +57,7 @@ def maze_search(maze):
 
     # Track the visited nodes
     is_visited = [[UNVISITED for w in range(width)] for h in range(height)]
+    # Mark this node as visited
     is_visited[initial_x][initial_y] = VISITED
 
     while queue:
@@ -69,8 +70,10 @@ def maze_search(maze):
 
         # Define new directions
         for dx, dy in directions:
-            new_x = x + dx
+            new_x = x + dx # differential x
             new_y = y + dy
+            new_z = new_y + new_x
+            print("New Z : ", new_z)
 
             # If new x and y are not within required height and width continue
             if not (0 <= new_x < height and 0 <= new_y < width):
@@ -78,6 +81,7 @@ def maze_search(maze):
 
             # Add to the queue and mark the node as visited
             if maze[new_x][new_y] == ALLOWED and is_visited[new_x][new_y] == UNVISITED:
+                # append to the list
                 queue.append((new_x, new_y, steps + 1))
                 is_visited[new_x][new_y] = VISITED
 
